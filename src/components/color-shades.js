@@ -5,14 +5,12 @@ import chroma from "chroma-js"
 
 export function ColorShades({ mainColor, shadeNumber, shadeScale }) {
   const shades = generateColors(mainColor, shadeNumber, shadeScale)
-  const nameStep = Math.round(1000 / (shadeNumber * 2 + 2))
 
   return (
     <div className="flex flex-col">
       {shades &&
         shades.map((shade, i) => {
-          const name = nameStep * (i + 1)
-          const dark = chroma(shade).get("lab.l") > 60
+          const dark = chroma(shade.hex).get("lab.l") > 60
           return (
             <div key={i}>
               <div
@@ -20,11 +18,11 @@ export function ColorShades({ mainColor, shadeNumber, shadeScale }) {
                   dark ? "text-gray-900" : "text-white"
                 }`}
                 style={{
-                  backgroundColor: shade,
+                  backgroundColor: shade.hex,
                 }}
               >
-                <div>{name}</div>
-                <div>{shade}</div>
+                <div>{shade.name}</div>
+                <div>{shade.hex}</div>
               </div>
             </div>
           )

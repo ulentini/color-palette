@@ -13,9 +13,6 @@ export function ColorPalette({
   const [mainColor, setMainColor] = useState()
   const [shadeNumber, setShadeNumber] = useState(initialShadeNumber)
   const [shadeScale, setShadeScale] = useState(initialShadeScale)
-  const [showColorPicker, setShowColorPicker] = useState(false)
-
-  const toggleColorPicker = () => setShowColorPicker(!showColorPicker)
 
   useEffect(() => {
     if (color !== mainColor) {
@@ -97,5 +94,9 @@ ColorPalette.propTypes = {
 
 function copyToClipboard(mainColor, shades, scale) {
   const list = generateColors(mainColor, shades, scale)
-  copy(list.join("\n"))
+  copy(
+    "{\n" +
+      list.map(shade => `"${shade.name}": "${shade.hex}",`).join("\n") +
+      "\n}\n",
+  )
 }
