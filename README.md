@@ -13,3 +13,7 @@ yarn install
 ```jsx
 <ColorPalette color={"#ff0000"} />
 ```
+
+## Demo
+
+[Try it](https://color-palette.umbertolentini.com/)
